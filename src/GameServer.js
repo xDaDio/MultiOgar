@@ -296,7 +296,7 @@ GameServer.prototype.onClientSocketOpen = function(ws) {
     var onMessage = function(message) {
         if (self.config.serverWsModule === "uws")
             // uws gives ArrayBuffer - convert it to Buffer
-            message = parseInt(process.version[1]) < 6 ? new Buffer(message) : Buffer.from(message);
+            message = parseInt(process.version[1]) < 6 ? new Buffer.from(message) : Buffer.from(message);
 
         if (!message.length) return;
         if (message.length > 256) {

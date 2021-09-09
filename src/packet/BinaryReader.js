@@ -9,7 +9,7 @@
 
 function BinaryReader(buffer) {
     this._offset = 0;
-    this._buffer = parseInt(process.version[1]) < 6 ? new Buffer(buffer) : Buffer.from(buffer);
+    this._buffer = parseInt(process.version[1]) < 6 ? Buffer.fill(buffer) : Buffer.from(buffer);
 }
 
 module.exports = BinaryReader;

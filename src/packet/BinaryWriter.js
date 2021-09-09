@@ -10,7 +10,7 @@
 const oldNode = parseInt(process.version[1]) < 6;
 const allocMax = 1048576;
 
-global.sharedBuffer = oldNode ? new Buffer(allocMax) : Buffer.allocUnsafe(allocMax);
+global.sharedBuffer = oldNode ? Buffer.alloc(allocMax) : Buffer.allocUnsafe(allocMax);
 global.allocLength = 0;
 
 function BinaryWriter() {
@@ -63,7 +63,7 @@ BinaryWriter.prototype.writeStringZeroUnicode = function(value) {
 };
 
 BinaryWriter.prototype.toBuffer = function() {
-    var newBuf = oldNode ? new Buffer(allocLength) : Buffer.allocUnsafe(allocLength);
+    var newBuf = oldNode ? Buffer.alloc(allocLength) : Buffer.allocUnsafe(allocLength);
     sharedBuffer.copy(newBuf, 0, 0, allocLength);
     return newBuf;
 };
